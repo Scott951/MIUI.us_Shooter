@@ -1,0 +1,15 @@
+#!/system/bin/sh
+#
+# d3rp_kang 
+
+READ_AHEAD_KB="2048"
+
+if [ -e /sys/devices/virtual/bdi/179:0/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/179:0/read_ahead_kb
+    echo "SD card read ahead kb SET to $READ_AHEAD_KB"
+fi
+
+if [ -e /sys/devices/virtual/bdi/179:64/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/179:64/read_ahead_kb
+    echo "SD card read ahead kb SET to $READ_AHEAD_KB"
+fi
