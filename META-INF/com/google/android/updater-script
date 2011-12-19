@@ -128,11 +128,13 @@ symlink("toolbox", "/system/bin/cat", "/system/bin/cmp",
         "/system/bin/ps", "/system/bin/reboot", "/system/bin/renice",
         "/system/bin/rmdir", "/system/bin/rmmod", "/system/bin/route",
         "/system/bin/schedtop", "/system/bin/sendevent",
+	"/system/bin/schedtop", "/system/bin/battd",
         "/system/bin/setconsole", "/system/bin/setprop", "/system/bin/sleep",
         "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
         "/system/bin/sync", "/system/bin/top", "/system/bin/uptime",
         "/system/bin/vmstat", "/system/bin/watchprops",
         "/system/bin/wipe");
+ui_print(" Fixing permissions...");
 set_perm_recursive(0, 0, 0755, 0644, "/system");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
 set_perm(0, 3003, 02750, "/system/bin/netcfg");
@@ -148,9 +150,12 @@ set_perm_recursive(0, 2000, 0755, 0750, "/system/etc/init.d");
 set_perm(0, 0, 0755, "/system/etc/init.d");
 set_perm(0, 2000, 0550, "/system/etc/init.goldfish.sh");
 set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
-set_perm_recursive(0, 2000, 0755, 0644, "/system/vendor");
+set_perm_recursive(0, 2000, 0755, 0755, "/system/vendor");
 set_perm_recursive(0, 0, 0755, 0644, "/system/vendor/firmware");
 set_perm(0, 2000, 0755, "/system/vendor/firmware");
+set_perm(0, 2000, 0755, "/system/vendor/lib");
+set_perm(0, 2000, 0755, "/system/vendor/lib/egl");
+set_perm(0, 2000, 0755, "/system/vendor/lib/hw");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
 set_perm(0, 0, 06755, "/system/xbin/apply_firewall");
 set_perm(0, 0, 06755, "/system/xbin/apply_theme");
@@ -163,13 +168,15 @@ set_perm(0, 0, 06755, "/system/xbin/procmem");
 set_perm(0, 0, 06755, "/system/xbin/procrank");
 set_perm(0, 0, 06755, "/system/xbin/run_as");
 set_perm(0, 0, 06755, "/system/xbin/su");
+set_perm(0, 0, 0755, "/system/etc/be_photo");
+set_perm(0, 0, 0755, "/system/etc/be_movie");
 set_perm(0, 0, 06755, "/system/xbin/tcpdump");
 set_perm(0, 2000, 0755, "/system/xbin/sqlite3"); 
 set_perm(0, 0, 0755, "/system/xbin/netd");
 show_progress(0.200000, 0);
 show_progress(0.200000, 10);
-show_progress(0.200000, 10);
 package_extract_file("boot.img", "/dev/block/mmcblk0p21");
 ui_print("Done! Congrats!  Enjoy MIUI 2.3.7 ");
 show_progress(0.100000, 0);
 unmount("/system");
+
